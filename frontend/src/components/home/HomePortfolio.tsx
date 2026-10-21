@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ArrowRightIcon, SparklesIcon } from 'lucide-react';
+import { ArrowRightIcon } from 'lucide-react';
 import { projects } from '../../data/projects';
 import { ButtonLink } from '../ButtonLink';
 import { ProjectCarousel } from '../ProjectCarousel';
@@ -39,20 +39,15 @@ export function HomePortfolio() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-28 bg-gradient-to-b from-white via-slate-50/80 to-white">
       
-      {/* Decorative ambient background glows */}
+      {/* Ambient background glows */}
       <div className="absolute top-1/4 left-1/2 -z-10 h-96 w-[600px] -translate-x-1/2 rounded-full bg-teal-400/10 blur-3xl" />
       <div className="absolute bottom-10 right-10 -z-10 h-72 w-72 rounded-full bg-ocean/10 blur-3xl" />
 
       <div className="container-site relative z-10">
         
-        {/* Section Heading with Badge & Smart Button */}
+        {/* Section Heading with valid string eyebrow */}
         <SectionHeading
-          eyebrow={
-            <span className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-700 shadow-xs">
-              <SparklesIcon className="h-3.5 w-3.5 text-emerald-600 animate-pulse" />
-              Featured Client Success Stories
-            </span>
-          }
+          eyebrow="Featured Client Success Stories"
           title="Live Platforms Engineered for Real Business Growth"
           description="Explore high-converting websites and powerful custom platforms we've built for leading e-commerce, renewable energy, and beauty brands."
           action={
