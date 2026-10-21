@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { site } from '../data/site';
 
 interface LogoBadgeProps {
@@ -7,26 +8,21 @@ interface LogoBadgeProps {
   decorative?: boolean;
 }
 
-/** Crops the uploaded logo photo to its circular badge so it can be used at any size. */
+/** Crops the uploaded logo artwork to its circular badge so it stays recognizable at small sizes. */
 export function LogoBadge({ size = 44, className = '', decorative = false }: LogoBadgeProps) {
-  const imgWidth = size * (1264 / 640);
   return (
     <span
       className={`relative inline-block shrink-0 overflow-hidden rounded-full bg-white ${className}`}
       style={{ width: size, height: size }}>
-      
-      <img
+      <Image
         src={site.logoUrl}
         alt={decorative ? '' : 'VisionSpring Agency logo'}
+        fill
+        sizes={`${size}px`}
+        priority={size <= 64}
+        className="scale-[1.18] object-cover"
         draggable={false}
-        style={{
-          position: 'absolute',
-          width: imgWidth,
-          maxWidth: 'none',
-          left: -size * (312 / 640),
-          top: -size * (93 / 640)
-        }} />
-      
+      />
     </span>);
 
 }

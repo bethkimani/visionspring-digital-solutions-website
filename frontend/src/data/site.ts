@@ -8,7 +8,7 @@ export const site = {
   email: 'visionspringagency@gmail.com',
   whatsappUrl: 'https://wa.me/254112280703',
   whatsappDefaultMessage: "Hello VisionSpring Agency, I'd like to talk about a project.",
-  logoUrl: "/visionspringagency.jpg",
+  logoUrl: "/vision%20logo.jpeg",
   /**
    * Connect a form service (e.g. a Formspree or Getform endpoint URL) to accept enquiries online.
    * While empty, the form never pretends to send — visitors are offered email and WhatsApp instead.
