@@ -1,6 +1,3 @@
-/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
-
 /* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
 @tailwind base;
 @tailwind components;
@@ -53,6 +50,35 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
+  .hero-phrases {
+    display: grid;
+  }
+  .hero-phrase {
+    grid-area: 1 / 1;
+    opacity: 0;
+    animation: hero-phrase-cycle 12.8s ease-in-out infinite both;
+  }
+}
+
+@keyframes hero-phrase-cycle {
+  0%,
+  3% {
+    filter: blur(4px);
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  5%,
+  20% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+  23%,
+  100% {
+    filter: blur(4px);
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -62,5 +88,13 @@
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .hero-phrase {
+    animation: none !important;
+  }
+  .hero-phrase:first-child {
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }
