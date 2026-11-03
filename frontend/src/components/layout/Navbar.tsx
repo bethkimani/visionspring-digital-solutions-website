@@ -44,6 +44,10 @@ export function Navbar() {
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const servicesActive = pathname.startsWith('/services');
 
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <header
       className={`sticky top-0 z-40 border-b bg-white/90 backdrop-blur-md transition-[border-color,box-shadow] duration-200 ${

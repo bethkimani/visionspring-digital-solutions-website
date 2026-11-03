@@ -10,7 +10,7 @@ import { CtaBanner } from '@/components/CtaBanner';
 const PAGE_SIZE = 6;
 
 export default function BlogPage() {
-  usePageMeta('Blog — Digital Insights', 'Practical guides on websites, SEO, social media, advertising, branding, e-commerce, and technology for businesses and schools.');
+  usePageMeta('Latest Updates — Digital Insights', 'Practical guides on websites, SEO, social media, advertising, branding, e-commerce, and technology for businesses and schools.');
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<string>('All');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
@@ -39,7 +39,7 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
-        breadcrumbs={[{ label: 'Home', to: '/' }, { label: 'Blog' }]}
+        breadcrumbs={[{ label: 'Home', to: '/' }, { label: 'Latest Updates' }]}
         title="Digital insights for growing organizations"
         description="Practical guides for business owners, entrepreneurs, schools, and online brands — on websites, search, social media, advertising, and technology." />
       

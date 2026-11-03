@@ -12,11 +12,11 @@ export function HomeBlog() {
     <section className="py-20 sm:py-28">
       <div className="container-site">
         <SectionHeading
-          eyebrow="Insights"
+          eyebrow="Latest Updates"
           title="Practical guides for growing online"
           action={
           <ButtonLink to="/blog" variant="outline" iconRight={<ArrowRightIcon className="h-4 w-4" aria-hidden="true" />}>
-              Visit the Blog
+              View Latest Updates
             </ButtonLink>
           } />
         
