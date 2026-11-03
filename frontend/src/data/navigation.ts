@@ -11,7 +11,7 @@ export const mainNav: NavItem[] = [
 { label: 'Portfolio', to: '/portfolio' },
 { label: 'Social Media', to: '/social-media' },
 { label: 'Pricing', to: '/pricing' },
-{ label: 'Blog', to: '/blog' },
+{ label: 'Latest Updates', to: '/blog' },
 { label: 'Contact', to: '/contact' }];
 
 
