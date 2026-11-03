@@ -139,7 +139,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               </ul>
             </nav>
             <div className="space-y-2 border-t border-line p-5">
-              <ButtonLink to="/contact" size="lg" className="w-full">
+              <ButtonLink to="/contact#consultation-form" size="lg" className="w-full">
                 Get a Free Consultation
               </ButtonLink>
               <ButtonLink href={whatsappLink()} variant="whatsapp" size="lg" className="w-full" icon={<WhatsAppIcon className="h-5 w-5" />}>

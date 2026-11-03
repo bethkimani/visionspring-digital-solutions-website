@@ -108,11 +108,13 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 xl:flex">
-          <ButtonLink to="/contact">Get a Free Consultation</ButtonLink>
+          <ButtonLink to="/contact#consultation-form" className="cta-btn-attention">
+            Get a Free Consultation
+          </ButtonLink>
         </div>
 
         <div className="flex items-center gap-2 xl:hidden">
-          <ButtonLink to="/contact" size="sm" className="hidden sm:inline-flex">
+          <ButtonLink to="/contact#consultation-form" size="sm" className="cta-btn-attention hidden sm:inline-flex">
             Free Consultation
           </ButtonLink>
           <button

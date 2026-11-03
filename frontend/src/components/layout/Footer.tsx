@@ -83,7 +83,7 @@ export function Footer() {
             <h2 className="text-sm font-semibold text-white">Start a project</h2>
             <p className="mt-4 text-sm leading-relaxed text-white/65">Tell us about your goals and we’ll recommend the right next step.</p>
             <Link
-              href="/contact"
+              href="/contact#consultation-form"
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-growth-light transition-colors duration-150 hover:text-white">
               
               Get a free consultation

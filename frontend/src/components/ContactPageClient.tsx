@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ArrowUpRightIcon, MailIcon } from 'lucide-react';
 import { usePageMeta } from '@/hooks/usePageMeta';
@@ -20,6 +20,18 @@ export default function ContactPageClient() {
   const activeSocials = socialLinks.filter((s) => s.url.trim() !== '');
   const serviceMessage = services.find((s) => s.slug === defaultService)?.whatsappMessage;
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#consultation-form') {
+      const timer = setTimeout(() => {
+        const el = document.getElementById('consultation-form');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <>
       <PageHero
@@ -30,7 +42,7 @@ export default function ContactPageClient() {
 
       <section className="py-16 sm:py-20">
         <div className="container-site grid gap-12 lg:grid-cols-12">
-          <div className="rounded-[2rem] bg-white p-6 ring-1 ring-line sm:p-10 lg:col-span-8">
+          <div id="consultation-form" className="scroll-mt-28 rounded-[2rem] bg-white p-6 ring-1 ring-line sm:p-10 lg:col-span-8">
             <h2 className="text-2xl font-extrabold text-navy-800 sm:text-3xl">Send a project enquiry</h2>
             {packageName &&
             <p className="mt-3 inline-flex rounded-full bg-sky-soft px-3 py-1 text-sm font-semibold text-ocean">Package: {packageName}</p>

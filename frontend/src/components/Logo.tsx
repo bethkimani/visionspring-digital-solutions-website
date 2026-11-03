@@ -20,7 +20,7 @@ export function LogoBadge({ size = 44, className = '', decorative = false }: Log
         fill
         sizes={`${size}px`}
         priority={size <= 64}
-        className="scale-[1.18] object-cover"
+        className="object-contain p-0.5"
         draggable={false}
       />
     </span>);
@@ -35,13 +35,13 @@ interface LogoProps {
 export function Logo({ tone = 'dark', size = 44 }: LogoProps) {
   return (
     <span className="flex items-center gap-3">
-      <LogoBadge size={size} decorative className="ring-1 ring-line" />
+      <LogoBadge size={size} decorative className="ring-1 ring-line/80 shadow-sm" />
       <span className="flex flex-col leading-none">
         <span className="font-display text-[17px] font-extrabold tracking-tight">
           <span className={tone === 'dark' ? 'text-navy-800' : 'text-white'}>Vision</span>
           <span className={tone === 'dark' ? 'text-growth-dark' : 'text-growth-light'}>Spring</span>
         </span>
-        <span className={`mt-1 text-[10px] font-medium tracking-[0.32em] ${tone === 'dark' ? 'text-muted' : 'text-white/60'}`}>
+        <span className={`mt-1 text-[10px] font-semibold tracking-[0.32em] ${tone === 'dark' ? 'text-muted' : 'text-white/60'}`}>
           AGENCY
         </span>
       </span>

@@ -18,7 +18,7 @@ export function CtaBanner({
   title,
   text,
   primaryLabel = 'Get a Free Consultation',
-  primaryTo = '/contact',
+  primaryTo = '/contact#consultation-form',
   whatsappMessage
 }: CtaBannerProps) {
   return (
