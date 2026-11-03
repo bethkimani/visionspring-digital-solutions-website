@@ -3,7 +3,6 @@ import { ArrowRightIcon } from 'lucide-react';
 import { socialSamples } from '../../data/socialSamples';
 import { ButtonLink } from '../ButtonLink';
 import { Reveal } from '../Reveal';
-import { SampleBadge } from '../SampleBadge';
 import { SocialPostMockup } from '../mockups/SocialPostMockup';
 import { SearchAdMockup } from '../mockups/SearchAdMockup';
 import { ContentCalendarMockup } from '../mockups/ContentCalendarMockup';
@@ -28,7 +27,6 @@ export function HomeSocial() {
           </div>
         </Reveal>
         <Reveal className="relative lg:col-span-7" delay={0.08}>
-          <SampleBadge tone="light" label="Illustrative samples — not client campaigns" className="absolute -top-10 right-0" />
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             <SocialPostMockup sample={socialSamples[1]} className="sm:translate-y-8" />
             <div className="space-y-4">

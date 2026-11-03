@@ -18,19 +18,37 @@ export function ServiceCard({ service, variant = 'compact' }: ServiceCardProps) 
     return (
       <Link
         href={`/services/${service.slug}`}
-        className="group relative flex h-full flex-col rounded-2xl border border-line bg-white p-6 transition-[transform,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-sky/40 hover:shadow-[0_24px_50px_-30px_rgba(11,42,91,0.45)]">
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-gradient-to-b from-white via-white to-slate-50/80 p-6 shadow-sm shadow-slate-200/60 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-ocean/50 hover:bg-white hover:shadow-xl hover:shadow-ocean/10">
         
-        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-soft text-ocean transition-colors duration-200 group-hover:bg-ocean group-hover:text-white">
-          <Icon className="h-6 w-6" aria-hidden="true" />
-        </span>
-        <h3 className="mt-5 text-lg font-bold text-navy-800">{service.navTitle}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{service.blurb}</p>
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-ocean">
+        {/* Subtle Top Accent Line on Hover */}
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-ocean via-sky-400 to-growth opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+
+        <div className="flex items-center justify-between">
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-ocean border border-sky-100 transition-all duration-200 group-hover:bg-ocean group-hover:text-white group-hover:border-transparent group-hover:shadow-md group-hover:shadow-ocean/20">
+            <Icon className="h-6 w-6" aria-hidden="true" />
+          </span>
+
+          {service.group && (
+            <span className="rounded-full bg-slate-100/90 px-2.5 py-0.5 text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+              {service.group}
+            </span>
+          )}
+        </div>
+
+        <h3 className="mt-4 text-lg font-extrabold text-navy-800 transition-colors duration-150 group-hover:text-ocean">
+          {service.navTitle}
+        </h3>
+
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          {service.blurb}
+        </p>
+
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-ocean transition-colors duration-150 group-hover:text-ocean-dark">
           Learn More
           <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
         </span>
-      </Link>);
-
+      </Link>
+    );
   }
 
   return (
