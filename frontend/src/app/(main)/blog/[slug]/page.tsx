@@ -107,10 +107,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json">
+        {JSON.stringify(jsonLd)}
+      </script>
 
       <article>
         <header className="bg-hero relative overflow-hidden text-white">
