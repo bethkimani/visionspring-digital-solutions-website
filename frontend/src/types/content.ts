@@ -112,8 +112,12 @@ export interface Post {
   author?: string;
   featured?: boolean;
   intro: string;
-  sections: PostSection[];
-  relatedServices: ServiceSlug[];
+  sections?: PostSection[];
+  body?: any;
+  seoTitle?: string;
+  focusKeyword?: string;
+  canonicalUrl?: string;
+  relatedServices?: ServiceSlug[];
 }
 
 export interface PricingPackage {
