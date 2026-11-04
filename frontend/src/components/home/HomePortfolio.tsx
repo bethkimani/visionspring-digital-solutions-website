@@ -8,37 +8,12 @@ import { ButtonLink } from '../ButtonLink';
 import { ProjectMockup } from '../ProjectMockup';
 import { Reveal } from '../Reveal';
 import { SectionHeading } from '../SectionHeading';
-
-// Mapping custom portfolio images from public/ folder
-const PORTFOLIO_IMAGE_MAP: Record<string, string> = {
-  synowatt: "/synowatt.jpeg",
-  urbanmall: "/urbanmall.jpeg",
-  dallian: "/Dallian.jpeg",
-  initiative: "/Initiativefortheneedy.jpeg",
-};
+import { withProjectImage } from '@/lib/projectImage';
 
 export function HomePortfolio() {
   const featured = projects
     .filter((p) => p.status === 'published' && p.featured)
-    .map((project) => {
-      const lowerSlug = project.slug.toLowerCase();
-
-      let customImage = project.image;
-      if (lowerSlug.includes("synowatt") || lowerSlug.includes("solar")) {
-        customImage = PORTFOLIO_IMAGE_MAP.synowatt;
-      } else if (lowerSlug.includes("urban") || lowerSlug.includes("mall") || lowerSlug.includes("steps")) {
-        customImage = PORTFOLIO_IMAGE_MAP.urbanmall;
-      } else if (lowerSlug.includes("dallian") || lowerSlug.includes("hair") || lowerSlug.includes("beauty")) {
-        customImage = PORTFOLIO_IMAGE_MAP.dallian;
-      } else if (lowerSlug.includes("initiative") || lowerSlug.includes("needy") || lowerSlug.includes("charity")) {
-        customImage = PORTFOLIO_IMAGE_MAP.initiative;
-      }
-
-      return {
-        ...project,
-        image: customImage,
-      };
-    });
+    .map(withProjectImage);
 
   const gridCols =
     featured.length >= 4

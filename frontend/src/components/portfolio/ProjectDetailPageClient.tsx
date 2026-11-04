@@ -8,12 +8,7 @@ import { ProjectMockup } from '@/components/ProjectMockup';
 import { ProjectCard } from '@/components/ProjectCard';
 import { ButtonLink } from '@/components/ButtonLink';
 import { CtaBanner } from '@/components/CtaBanner';
-
-const PORTFOLIO_IMAGE_MAP: Record<string, string> = {
-  synowatt: "/synowatt.jpeg",
-  urbanmall: "/urbanmall.jpeg",
-  dallian: "/Dallian.jpeg",
-};
+import { withProjectImage } from '@/lib/projectImage';
 
 interface ProjectDetailPageClientProps {
   slug: string;
@@ -23,28 +18,12 @@ export function ProjectDetailPageClient({ slug }: ProjectDetailPageClientProps) 
   const rawProject = projects.find((p) => p.slug === slug && p.status !== 'draft');
   if (!rawProject) return null;
 
-  const lowerSlug = rawProject.slug.toLowerCase();
-  let customImage = rawProject.image;
-  if (lowerSlug.includes("synowatt") || lowerSlug.includes("solar")) {
-    customImage = PORTFOLIO_IMAGE_MAP.synowatt;
-  } else if (lowerSlug.includes("urban") || lowerSlug.includes("mall") || lowerSlug.includes("steps")) {
-    customImage = PORTFOLIO_IMAGE_MAP.urbanmall;
-  } else if (lowerSlug.includes("dallian") || lowerSlug.includes("hair") || lowerSlug.includes("beauty")) {
-    customImage = PORTFOLIO_IMAGE_MAP.dallian;
-  }
-  const project = { ...rawProject, image: customImage };
+  const project = withProjectImage(rawProject);
 
   const others = projects
     .filter((p) => p.slug !== project.slug && p.status !== 'draft')
     .slice(0, 3)
-    .map((p) => {
-      const lSlug = p.slug.toLowerCase();
-      let img = p.image;
-      if (lSlug.includes("synowatt") || lSlug.includes("solar")) img = PORTFOLIO_IMAGE_MAP.synowatt;
-      else if (lSlug.includes("urban") || lSlug.includes("mall") || lSlug.includes("steps")) img = PORTFOLIO_IMAGE_MAP.urbanmall;
-      else if (lSlug.includes("dallian") || lSlug.includes("hair") || lSlug.includes("beauty")) img = PORTFOLIO_IMAGE_MAP.dallian;
-      return { ...p, image: img };
-    });
+    .map(withProjectImage);
 
   return (
     <>
