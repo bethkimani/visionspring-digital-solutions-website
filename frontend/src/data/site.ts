@@ -3,7 +3,7 @@ import type { SocialLink } from '../types/content';
 export const site = {
   name: 'VisionSpring Agency',
   tagline: 'Digital Solutions. Real Growth.',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.visionspringagency.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL || '',
   description:
   'VisionSpring Agency helps businesses build their digital presence through website development, web applications, SEO, social media management, digital advertising, and creative branding.',
   email: 'visionspringagency@gmail.com',
