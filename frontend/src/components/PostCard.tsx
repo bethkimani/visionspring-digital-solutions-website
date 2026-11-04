@@ -17,11 +17,9 @@ export function PostCard({ post, variant = 'card' }: PostCardProps) {
         <ClockIcon className="h-3.5 w-3.5" aria-hidden="true" />
         {post.readMinutes} min read
       </span>
-      {post.status === 'published' && post.publishedAt ?
-    <time dateTime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time> :
-
-    <span className="rounded-full bg-mist px-2 py-0.5 font-semibold text-muted">Sample article</span>
-    }
+      {post.publishedAt && (
+        <time dateTime={post.publishedAt}>{formatPostDate(post.publishedAt)}</time>
+      )}
     </div>;
 
 

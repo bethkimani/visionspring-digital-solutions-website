@@ -2,29 +2,76 @@ import { BadgeCheckIcon, LightbulbIcon, PaletteIcon, TrendingUpIcon } from 'luci
 
 /** Editable About page content. */
 export const mission =
-'To help businesses, institutions, and entrepreneurs grow by delivering practical, well-crafted digital solutions that strengthen their presence and connect them with the people they serve.';
+  'To help businesses, institutions, and entrepreneurs in Kenya and beyond grow by creating professional websites, easy-to-use custom software, and marketing that brings in real paying customers.';
 
 export const vision =
-'To be a trusted digital partner for organizations in Kenya and beyond — known for turning ideas into digital experiences that create lasting value.';
+  'To be Kenya’s most trusted partner for business websites and software — known for delivering dependable solutions that make work easier and help businesses expand.';
 
 export const values = [
-{ title: 'Innovation', text: 'We look for better, smarter ways to solve problems with technology — never change for its own sake.', icon: LightbulbIcon },
-{ title: 'Creativity', text: 'Thoughtful design and clear storytelling help your brand stand out and be remembered.', icon: PaletteIcon },
-{ title: 'Quality', text: 'We sweat the details — clean code, careful design, and work we are proud to put our name on.', icon: BadgeCheckIcon },
-{ title: 'Growth', text: 'Every project is measured against one question: does this help our client move forward?', icon: TrendingUpIcon }];
-
+  {
+    title: 'Reliable Technology',
+    text: 'We build websites and custom software systems that work smoothly without glitches, load fast on phones, and keep your business running 24/7.',
+    icon: LightbulbIcon,
+  },
+  {
+    title: 'Simple & Beautiful Design',
+    text: 'We create clean, professional designs that make your business look trustworthy and make it effortless for customers to contact you or buy.',
+    icon: PaletteIcon,
+  },
+  {
+    title: 'Focus on Real Results',
+    text: 'Every website or software system we build has one clear goal: helping you attract more inquiries, save time, and increase sales.',
+    icon: TrendingUpIcon,
+  },
+  {
+    title: 'Honest Partnership',
+    text: 'Clear quotes, realistic timelines, and continuous support. We explain everything in plain language with no confusing tech jargon.',
+    icon: BadgeCheckIcon,
+  },
+];
 
 export const approach = [
-{ title: 'Listen first', text: 'We start by understanding your goals, your customers, and what success looks like for you.' },
-{ title: 'Define the right solution', text: 'We recommend only what fits your objectives, timeline, and budget — no unnecessary extras.' },
-{ title: 'Design and build together', text: 'You review progress at clear milestones, so the result reflects your business.' },
-{ title: 'Support the long run', text: 'After launch we help you maintain, measure, and improve what we have built.' }];
-
+  {
+    title: 'Understanding Your Business',
+    text: 'We sit down with you to understand what your business does, who your customers are, and the exact goals you want your website or software to achieve.',
+  },
+  {
+    title: 'Clear Plan & Fixed Quote',
+    text: 'We outline what we will build, how it will work, how long it will take, and give you an honest, fixed price with zero hidden costs.',
+  },
+  {
+    title: 'Building & Testing with You',
+    text: 'We build your website or system step-by-step and show you progress at each stage, making sure it works perfectly on phones, tablets, and computers.',
+  },
+  {
+    title: 'Launch, Training & Support',
+    text: 'We launch your site, show you how to manage it, help customers find you on Google, and stay available whenever you need updates or assistance.',
+  },
+];
 
 export const audiences = [
-{ title: 'Businesses', text: 'Service providers, retailers, and SMEs ready to look professional online and win more enquiries.' },
-{ title: 'Schools', text: 'Schools that need clear websites, admissions information, and tools that simplify administration.' },
-{ title: 'Institutions', text: 'Organizations that need trustworthy digital communication and dependable platforms.' },
-{ title: 'Startups', text: 'New ventures that need a strong launch presence and products that can scale.' },
-{ title: 'Entrepreneurs', text: 'Founders and personal brands building credibility and reaching their first customers.' },
-{ title: 'E-commerce brands', text: 'Online sellers that need storefronts, promotion, and campaigns that drive traffic.' }];
+  {
+    title: 'Businesses & Service Providers',
+    text: 'Companies looking for a professional website that brings in steady phone calls, WhatsApp messages, and quote requests from new clients.',
+  },
+  {
+    title: 'Schools & Colleges',
+    text: 'Schools needing an attractive website with online student admissions, fee information, announcements, and easy parent communication.',
+  },
+  {
+    title: 'Online Stores & Retailers',
+    text: 'Shops wanting to sell products online with instant M-Pesa payments, automated receipts, and simple product inventory management.',
+  },
+  {
+    title: 'Companies Needing Custom Software',
+    text: 'Organizations that need custom portals or online systems to manage bookings, staff workflows, or customer records in one place.',
+  },
+  {
+    title: 'Startups & New Ventures',
+    text: 'New businesses that need a strong first impression online and a website or web application that is ready to grow with them.',
+  },
+  {
+    title: 'Consultants & Professionals',
+    text: 'Doctors, lawyers, accountants, and consultants who need a credible website to establish trust and book client consultations.',
+  },
+];

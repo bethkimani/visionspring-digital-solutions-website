@@ -11,6 +11,8 @@ interface ButtonLinkProps {
   iconRight?: React.ReactNode;
   className?: string;
   ariaLabel?: string;
+  target?: string;
+  rel?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   children: React.ReactNode;
 }
@@ -24,6 +26,8 @@ export function ButtonLink({
   iconRight,
   className = '',
   ariaLabel,
+  target,
+  rel,
   onClick,
   children
 }: ButtonLinkProps) {
@@ -50,8 +54,8 @@ export function ButtonLink({
       href={href}
       className={classes}
       aria-label={ariaLabel}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noopener noreferrer' : undefined}
+      target={target ?? (isExternal ? '_blank' : undefined)}
+      rel={rel ?? (isExternal ? 'noopener noreferrer' : undefined)}
       onClick={onClick}>
       
       {content}

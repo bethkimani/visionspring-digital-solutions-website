@@ -14,9 +14,9 @@ export function HomeServices() {
 
       <div className="container-site relative z-10">
         <SectionHeading
-          eyebrow="What we do"
-          title="Everything your business needs to grow online"
-          description="Build a strong foundation, reach the right audience, and look professional everywhere — with one partner."
+          eyebrow="What We Do"
+          title="Everything Your Business Needs to Grow Online"
+          description="From professional business websites and custom software to online stores with M-Pesa and Google search ranking — we take care of the tech so you can focus on running your business."
           action={
             <ButtonLink to="/services" variant="secondary" iconRight={<ArrowRightIcon className="h-4 w-4" aria-hidden="true" />}>
               Explore Services
