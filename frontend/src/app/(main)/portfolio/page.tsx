@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     'Dallian Luxe Hair Website',
     'Synowatt Power Solar Website',
     'UrbanMall Kenya',
+    'Initiative for the Needy Website',
+    'NGO Website Design Kenya',
   ],
   alternates: {
     canonical: `${site.url}/portfolio`,
