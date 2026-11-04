@@ -62,6 +62,7 @@ export const projects: Project[] = [
   title: 'Initiative for the Needy',
   categories: ['Non-Profit', 'Community Organization'],
   summary: 'A community-based organization in Thika, Kiambu County, empowering vulnerable people through advocacy, education, health, economic empowerment and social support. The website showcases their programmes and mobilizes donors, volunteers and partners.',
+  image: '/Initiativefortheneedy.jpeg',
   focus: [
     'Donation, volunteer and partnership calls-to-action',
     'Programmes, impact stats and community stories',
