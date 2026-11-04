@@ -15,7 +15,7 @@ export function ProjectMockup({ project, className = '' }: ProjectMockupProps) {
     <div className={`relative ${className}`}>
       <BrowserFrame url={domain}>
         {project.image ?
-        <img src={project.image} alt={`Screenshot of the ${project.title} website`} className="aspect-[16/10] w-full object-cover object-top" /> :
+        <img src={project.image} alt={`Screenshot of the ${project.title} website`} className="block aspect-[16/10] w-full object-cover object-top" /> :
 
         <div className="aspect-[16/10] overflow-hidden" style={{ background: project.theme.background }}>
             <WebsiteMockup

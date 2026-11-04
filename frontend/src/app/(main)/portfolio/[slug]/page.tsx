@@ -4,13 +4,7 @@ import { notFound } from 'next/navigation';
 import { site } from '@/data/site';
 import { projects } from '@/data/projects';
 import { ProjectDetailPageClient } from '@/components/portfolio/ProjectDetailPageClient';
-
-const PORTFOLIO_IMAGE_MAP: Record<string, string> = {
-  synowatt: "/synowatt.jpeg",
-  urbanmall: "/urbanmall.jpeg",
-  dallian: "/Dallian.jpeg",
-  initiative: "/Initiativefortheneedy.jpeg",
-};
+import { getProjectImage, withProjectImage } from '@/lib/projectImage';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -28,19 +22,7 @@ function resolveProject(slug: string) {
   const raw = projects.find((p) => p.slug === slug && p.status !== 'draft');
   if (!raw) return null;
 
-  const lowerSlug = raw.slug.toLowerCase();
-  let customImage = raw.image;
-  if (lowerSlug.includes("synowatt") || lowerSlug.includes("solar")) {
-    customImage = PORTFOLIO_IMAGE_MAP.synowatt;
-  } else if (lowerSlug.includes("urban") || lowerSlug.includes("mall") || lowerSlug.includes("steps")) {
-    customImage = PORTFOLIO_IMAGE_MAP.urbanmall;
-  } else if (lowerSlug.includes("dallian") || lowerSlug.includes("hair") || lowerSlug.includes("beauty")) {
-    customImage = PORTFOLIO_IMAGE_MAP.dallian;
-  } else if (lowerSlug.includes("initiative") || lowerSlug.includes("needy") || lowerSlug.includes("charity")) {
-    customImage = PORTFOLIO_IMAGE_MAP.initiative;
-  }
-
-  return { ...raw, image: customImage };
+  return { ...raw, image: getProjectImage(raw) };
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -106,15 +88,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const others = projects
     .filter((p) => p.slug !== project.slug && p.status !== 'draft')
     .slice(0, 3)
-    .map((p) => {
-      const lSlug = p.slug.toLowerCase();
-      let img = p.image;
-      if (lSlug.includes("synowatt") || lSlug.includes("solar")) img = PORTFOLIO_IMAGE_MAP.synowatt;
-      else if (lSlug.includes("urban") || lSlug.includes("mall") || lSlug.includes("steps")) img = PORTFOLIO_IMAGE_MAP.urbanmall;
-      else if (lSlug.includes("dallian") || lSlug.includes("hair") || lSlug.includes("beauty")) img = PORTFOLIO_IMAGE_MAP.dallian;
-      else if (lSlug.includes("initiative") || lSlug.includes("needy") || lSlug.includes("charity")) img = PORTFOLIO_IMAGE_MAP.initiative;
-      return { ...p, image: img };
-    });
+    .map(withProjectImage);
 
   const projectJsonLd = {
     '@context': 'https://schema.org',

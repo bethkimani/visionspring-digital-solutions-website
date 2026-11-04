@@ -9,22 +9,10 @@ import { ProjectCarousel } from '@/components/ProjectCarousel';
 import { ProjectCard } from '@/components/ProjectCard';
 import { CtaBanner } from '@/components/CtaBanner';
 import { ButtonLink } from '@/components/ButtonLink';
-
-const PORTFOLIO_IMAGE_MAP: Record<string, string> = {
-  synowatt: "/synowatt.jpeg",
-  urbanmall: "/urbanmall.jpeg",
-  dallian: "/Dallian.jpeg",
-};
+import { withProjectImage } from '@/lib/projectImage';
 
 export function PortfolioPageClient() {
-  const mappedProjects = projects.map((p) => {
-    const lSlug = p.slug.toLowerCase();
-    let img = p.image;
-    if (lSlug.includes("synowatt") || lSlug.includes("solar")) img = PORTFOLIO_IMAGE_MAP.synowatt;
-    else if (lSlug.includes("urban") || lSlug.includes("mall") || lSlug.includes("steps")) img = PORTFOLIO_IMAGE_MAP.urbanmall;
-    else if (lSlug.includes("dallian") || lSlug.includes("hair") || lSlug.includes("beauty")) img = PORTFOLIO_IMAGE_MAP.dallian;
-    return { ...p, image: img };
-  });
+  const mappedProjects = projects.map(withProjectImage);
 
   const visible = mappedProjects.filter((p) => p.status !== 'draft');
   const featured = visible.filter((p) => p.featured && p.status === 'published');
