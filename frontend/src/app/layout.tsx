@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { site } from "@/data/site";
+import ClarityProvider from "@/components/providers/ClarityProvider";
+
+const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || '';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,7 +19,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: site.url ? new URL(site.url) : undefined,
   title: {
     default: "VisionSpring Agency | Digital Solutions. Real Growth.",
     template: "%s | VisionSpring Agency",
@@ -96,7 +99,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${manrope.variable}`}>{children}</body>
+      <body className={`${inter.variable} ${manrope.variable}`}>
+        <ClarityProvider projectId={CLARITY_PROJECT_ID} />
+        {children}
+      </body>
     </html>
   );
 }
