@@ -56,4 +56,20 @@ export const projects: Project[] = [
   status: 'published',
   featured: true,
   theme: { background: '#0E2A1F', surface: '#143828', accent: '#F2B705', text: '#F1F7F3' }
+},
+{
+  slug: 'initiative-for-the-needy',
+  title: 'Initiative for the Needy',
+  categories: ['Non-Profit', 'Community Organization'],
+  summary: 'A community-based organization in Thika, Kiambu County, empowering vulnerable people through advocacy, education, health, economic empowerment and social support. The website showcases their programmes and mobilizes donors, volunteers and partners.',
+  focus: [
+    'Donation, volunteer and partnership calls-to-action',
+    'Programmes, impact stats and community stories',
+    'Team profiles and news & blog updates',
+    'Mobile-friendly design with clear contact details'
+  ],
+  url: 'https://www.initiativefortheneedy.com/',
+  status: 'published',
+  featured: true,
+  theme: { background: '#0B2A5B', surface: '#12376F', accent: '#F2A93B', text: '#F4F7FB' }
 }];

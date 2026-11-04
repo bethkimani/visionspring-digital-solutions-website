@@ -14,6 +14,7 @@ const PORTFOLIO_IMAGE_MAP: Record<string, string> = {
   synowatt: "/synowatt.jpeg",
   urbanmall: "/urbanmall.jpeg",
   dallian: "/Dallian.jpeg",
+  initiative: "/initiativefortheneedy.jpeg",
 };
 
 export function HomePortfolio() {
@@ -21,7 +22,7 @@ export function HomePortfolio() {
     .filter((p) => p.status === 'published' && p.featured)
     .map((project) => {
       const lowerSlug = project.slug.toLowerCase();
-      
+
       let customImage = project.image;
       if (lowerSlug.includes("synowatt") || lowerSlug.includes("solar")) {
         customImage = PORTFOLIO_IMAGE_MAP.synowatt;
@@ -29,6 +30,8 @@ export function HomePortfolio() {
         customImage = PORTFOLIO_IMAGE_MAP.urbanmall;
       } else if (lowerSlug.includes("dallian") || lowerSlug.includes("hair") || lowerSlug.includes("beauty")) {
         customImage = PORTFOLIO_IMAGE_MAP.dallian;
+      } else if (lowerSlug.includes("initiative") || lowerSlug.includes("needy") || lowerSlug.includes("charity")) {
+        customImage = PORTFOLIO_IMAGE_MAP.initiative;
       }
 
       return {
@@ -36,6 +39,11 @@ export function HomePortfolio() {
         image: customImage,
       };
     });
+
+  const gridCols =
+    featured.length >= 4
+      ? 'md:grid-cols-2 xl:grid-cols-4'
+      : 'md:grid-cols-2 lg:grid-cols-3';
 
   return (
     <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-[#04142e] via-[#0b2a5b] to-[#0a356e] text-white">
@@ -48,12 +56,12 @@ export function HomePortfolio() {
         <SectionHeading
           eyebrow="Featured Client Success Stories"
           title="Live Platforms Engineered for Real Business Growth"
-          description="Explore high-converting websites and powerful custom platforms we've built for leading e-commerce, renewable energy, and beauty brands."
+          description="Explore high-converting websites and powerful custom platforms we've built for leading e-commerce, renewable energy, beauty, and community organizations."
           tone="light"
           action={
-            <ButtonLink 
-              to="/portfolio" 
-              variant="light" 
+            <ButtonLink
+              to="/portfolio"
+              variant="light"
               className="font-semibold text-navy-800 shadow-md transition-all duration-200 hover:shadow-lg hover:bg-sky-soft"
               iconRight={<ArrowRightIcon className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true" />}
             >
@@ -62,8 +70,8 @@ export function HomePortfolio() {
           }
         />
 
-        {/* 3-Column All-at-Once Grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Responsive All-at-Once Grid */}
+        <div className={`mt-12 grid grid-cols-1 ${gridCols} gap-6 lg:gap-8`}>
           {featured.map((project, index) => (
             <Reveal key={project.slug} delay={index * 0.1} className="h-full">
               <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/15 bg-white p-4 sm:p-5 shadow-2xl shadow-black/25 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.5)] hover:border-ocean/60">
@@ -77,8 +85,8 @@ export function HomePortfolio() {
                   {/* Category tags */}
                   <div className="flex flex-wrap gap-1.5 mb-2.5">
                     {project.categories.map((cat) => (
-                      <span 
-                        key={cat} 
+                      <span
+                        key={cat}
                         className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700"
                       >
                         {cat}
@@ -94,7 +102,7 @@ export function HomePortfolio() {
                   </h3>
 
                   {/* Summary */}
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-2">
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-3">
                     {project.summary}
                   </p>
 
