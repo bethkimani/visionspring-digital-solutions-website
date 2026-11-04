@@ -54,11 +54,11 @@ export function HomeAbout() {
         <Reveal className="lg:col-span-6" delay={0.08}>
           <div className="space-y-4 sm:space-y-5">
             <h2 className="text-2xl font-extrabold leading-[1.2] text-navy-800 sm:text-3xl lg:text-4xl">
-              We combine technology, creativity &amp; strategy to help your brand grow.
+              Kenya&apos;s Trusted Partner for Business Websites &amp; Software
             </h2>
 
             <p className="text-sm sm:text-base leading-relaxed text-slate-600">
-              VisionSpring Agency is a digital marketing and technology agency in Kenya. We build modern websites, develop scalable web applications, and run targeted campaigns that turn visitors into loyal customers.
+              Headquartered in Nairobi, VisionSpring Agency helps businesses across Kenya and worldwide grow online. We build fast, mobile-friendly websites, develop easy-to-use custom software, and help customers find your business easily when searching on Google.
             </p>
 
             <ul className="space-y-2.5 pt-1 text-sm font-medium text-slate-700">
@@ -66,19 +66,25 @@ export function HomeAbout() {
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-growth/15 text-growth-dark text-xs font-bold">
                   ✓
                 </span>
-                <span>Custom websites &amp; web apps built for performance and conversions</span>
+                <span>Modern business websites and custom software that look great and load fast on phones</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-growth/15 text-growth-dark text-xs font-bold">
                   ✓
                 </span>
-                <span>Targeted SEO, Google Ads, and social media growth strategies</span>
+                <span>Google search ranking (SEO) and ads so new customers find you when looking for your services</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-growth/15 text-growth-dark text-xs font-bold">
                   ✓
                 </span>
-                <span>Dedicated ongoing maintenance, optimization, and transparent reporting</span>
+                <span>Online stores with instant M-Pesa payments for easy customer checkout</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-growth/15 text-growth-dark text-xs font-bold">
+                  ✓
+                </span>
+                <span>Dependable ongoing support, updates, and maintenance whenever you need help</span>
               </li>
             </ul>
 

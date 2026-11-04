@@ -1,7 +1,5 @@
 import React from 'react';
-import { TriangleAlertIcon } from 'lucide-react';
 import type { LegalDocumentContent } from '../types/content';
-import { legalReviewNotice } from '../data/legal';
 import { PageHero } from './PageHero';
 
 export function LegalDocument({ doc }: {doc: LegalDocumentContent;}) {
@@ -25,11 +23,7 @@ export function LegalDocument({ doc }: {doc: LegalDocumentContent;}) {
             </nav>
           </aside>
           <div className="lg:col-span-8">
-            <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900" role="note">
-              <TriangleAlertIcon className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
-              <p>{legalReviewNotice}</p>
-            </div>
-            <div className="mt-10 space-y-12">
+            <div className="space-y-12">
               {doc.sections.map((s) =>
               <section key={s.id} id={s.id} className="scroll-mt-28">
                   <h2 className="text-2xl font-extrabold text-navy-800">{s.heading}</h2>

@@ -13,8 +13,13 @@ export const projects: Project[] = [
   title: 'Dallian Luxe Hair',
   categories: ['E-commerce', 'Beauty & Lifestyle'],
   summary:
-  'A beauty and hair brand website presenting products, collections, services, and a premium customer experience.',
-  focus: ['Product and collection presentation', 'Service information for customers', 'Premium, brand-led visual experience', 'Mobile-friendly browsing'],
+  'A luxury beauty and hair online store featuring product collections, customer booking, and a smooth mobile shopping experience.',
+  focus: [
+    'Mobile-friendly online shopping catalog',
+    'Direct customer booking & WhatsApp inquiries',
+    'Fast-loading luxury visual experience',
+    'Lipa na M-Pesa ready checkout flow'
+  ],
   url: 'https://dallian.online/',
   status: 'published',
   featured: true,
@@ -23,9 +28,14 @@ export const projects: Project[] = [
 {
   slug: 'urbanmall',
   title: 'UrbanMall',
-  categories: ['E-commerce', 'Digital Marketplace'],
-  summary: 'An online marketplace project designed to present products and provide a modern digital shopping experience.',
-  focus: ['Product discovery and categories', 'Modern shopping experience', 'Marketplace-style product presentation', 'Responsive across devices'],
+  categories: ['E-commerce', 'Online Marketplace'],
+  summary: 'A fast multi-vendor shopping marketplace built for Kenyan shoppers, featuring intuitive product search, category browsing, and simple checkout.',
+  focus: [
+    'Instant product search & category discovery',
+    'Smooth mobile checkout for everyday shoppers',
+    'Fast-loading online catalog with clear pricing',
+    'Responsive across phones, tablets, and laptops'
+  ],
   url: 'https://urbanmall.co.ke/',
   status: 'published',
   featured: true,
@@ -35,8 +45,13 @@ export const projects: Project[] = [
   slug: 'synowatt-power-solar',
   title: 'Synowatt Power & Solar Ltd',
   categories: ['Corporate Website', 'Renewable Energy'],
-  summary: 'A corporate website showcasing solar energy services and renewable energy solutions.',
-  focus: ['Corporate presence and credibility', 'Solar service presentation', 'Renewable energy solutions overview', 'Clear routes to enquire'],
+  summary: 'A high-authority corporate website for a leading solar energy company in Kenya, designed to showcase solar solutions and capture client quote requests.',
+  focus: [
+    'Corporate credibility & professional brand presence',
+    'Clear presentation of solar services and packages',
+    'Simple quote request forms to capture new leads',
+    'Fast, mobile-friendly browsing for commercial clients'
+  ],
   url: 'https://synowatt.com/',
   status: 'published',
   featured: true,

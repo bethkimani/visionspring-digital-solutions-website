@@ -41,13 +41,11 @@ export function HomeHero() {
 
       <div className="bg-grid-lines pointer-events-none absolute inset-0 z-0" aria-hidden="true" />
 
-      <div className="container-site relative z-10 grid items-center gap-6 py-6 sm:gap-8 sm:py-8 lg:grid-cols-12 lg:gap-8 lg:py-8 xl:py-12">
+      <div className="container-site relative z-10 grid items-center gap-6 py-4 sm:gap-6 sm:py-6 lg:grid-cols-12 lg:gap-8 lg:py-4 xl:py-6">
         <div className="min-w-0 lg:col-span-6">
-          
-
           <h1
             aria-label="We Build Powerful Digital Experiences That Grow Your Business."
-            className="text-[clamp(1.85rem,3.8vw,3.25rem)] font-extrabold leading-[1.12]"
+            className="text-[clamp(1.75rem,3.4vw,3rem)] font-extrabold leading-[1.12]"
           >
             We Build
             <span className="hero-phrases my-1">
@@ -64,14 +62,14 @@ export function HomeHero() {
             That Grow Your Business.
           </h1>
 
-          <p className="mt-3.5 max-w-lg text-sm leading-relaxed text-slate-200 sm:mt-4 sm:text-base lg:text-[15px] xl:text-lg">
-            From <span className="font-semibold text-teal-300">stunning websites</span> and{' '}
-            <span className="font-semibold text-sky-300">custom apps</span> to{' '}
-            <span className="font-semibold text-emerald-300">SEO &amp; branding</span>, we turn
-            your vision into digital experiences that attract customers and generate results.
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-slate-200 sm:text-[15px] lg:text-base">
+            From <span className="font-semibold text-teal-300">business websites</span> and{' '}
+            <span className="font-semibold text-sky-300">custom software</span> to{' '}
+            <span className="font-semibold text-emerald-300">getting found on Google</span>, we help
+            you attract more customers and grow your business in Kenya and beyond.
           </p>
 
-          <div className="mt-5 sm:mt-6 flex items-center gap-4">
+          <div className="mt-4 sm:mt-5 flex items-center gap-4">
             <ButtonLink
               to="/services"
               variant="light"
@@ -88,7 +86,7 @@ export function HomeHero() {
             </ButtonLink>
           </div>
 
-          <p className="mt-5 sm:mt-6 flex items-center gap-3 text-xs sm:text-sm font-medium text-slate-300/80">
+          <p className="mt-3.5 sm:mt-4 flex items-center gap-2.5 text-xs sm:text-[13px] font-medium text-slate-300/80">
             <span
               className="h-px w-8 sm:w-10 shrink-0 bg-gradient-to-r from-teal-400 to-sky-400"
               aria-hidden="true"

@@ -183,16 +183,6 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
           {/* Main Article Content */}
           <div className="lg:col-span-6">
-            {post.status === 'sample' && (
-              <p
-                className="mb-10 flex items-start gap-2 rounded-xl bg-sky-soft px-4 py-3 text-sm text-navy-800"
-                role="note"
-              >
-                <InfoIcon className="mt-0.5 h-4 w-4 shrink-0 text-ocean" aria-hidden="true" />
-                Sample article — draft content for review before publication.
-              </p>
-            )}
-
             {/* Render Sanity Portable Text if present */}
             {post.body ? (
               <PortableTextRenderer value={post.body} />
@@ -232,7 +222,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <ButtonLink
-                  to={`/#consultation-form`}
+                  to="/contact#consultation-form"
                   variant="light"
                 >
                   Talk to Our Team

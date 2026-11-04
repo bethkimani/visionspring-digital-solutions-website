@@ -8,8 +8,8 @@ export function HomeWhyProcess() {
       <div className="container-site grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <Reveal>
-            <p className="mb-4 text-sm font-semibold text-growth-dark">Why VisionSpring</p>
-            <h2 className="text-3xl font-extrabold leading-[1.1] text-navy-800 sm:text-4xl">A digital partner that puts your goals first</h2>
+            <p className="mb-4 text-sm font-semibold text-growth-dark">Why VisionSpring Agency</p>
+            <h2 className="text-3xl font-extrabold leading-[1.1] text-navy-800 sm:text-4xl">Why Businesses in Kenya &amp; Beyond Choose VisionSpring</h2>
           </Reveal>
           <ul className="mt-10 divide-y divide-line border-t border-line">
             {reasons.map((r, i) =>

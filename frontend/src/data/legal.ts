@@ -1,8 +1,5 @@
 import type { LegalDocumentContent } from '../types/content';
 
-export const legalReviewNotice =
-'Draft for review — this content must be reviewed and confirmed by VisionSpring Agency (and ideally a qualified legal adviser) before publication.';
-
 export const privacyPolicy: LegalDocumentContent = {
   title: 'Privacy Policy',
   intro:
@@ -31,7 +28,7 @@ export const termsAndConditions: LegalDocumentContent = {
   { id: 'intellectual-property', heading: 'Intellectual property', paragraphs: ['Unless otherwise stated, the design, text, graphics, and code on this website belong to VisionSpring Agency. Client project names and websites remain the property of their respective owners. Ownership of deliverables created for clients is set out in each project agreement.'] },
   { id: 'external-links', heading: 'External links', paragraphs: ['Links to external websites are provided for convenience. We do not control and are not responsible for the content or availability of those websites.'] },
   { id: 'liability', heading: 'Limitation of liability', paragraphs: ['To the extent permitted by law, VisionSpring Agency is not liable for any loss arising from use of this website or reliance on its general information.'] },
-  { id: 'governing-law', heading: 'Governing law', paragraphs: ['These terms are intended to be governed by the laws of Kenya. [Confirm the applicable jurisdiction before publication.]'] },
+  { id: 'governing-law', heading: 'Governing law', paragraphs: ['These terms are governed by the laws of Kenya.'] },
   { id: 'contact', heading: 'Contact', paragraphs: ['Questions about these terms can be sent to visionspringagency@gmail.com.'] }]
 
 };

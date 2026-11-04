@@ -1,10 +1,21 @@
-"use client";
 import React from 'react';
-import { usePageMeta } from '@/hooks/usePageMeta';
+import type { Metadata } from 'next';
+import { site } from '@/data/site';
 import { privacyPolicy } from '@/data/legal';
 import { LegalDocument } from '@/components/LegalDocument';
 
+export const metadata: Metadata = {
+  title: 'Privacy Policy | VisionSpring Agency',
+  description: 'How VisionSpring Agency collects, uses, and safeguards personal information submitted through this website.',
+  alternates: {
+    canonical: `${site.url}/privacy-policy`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default function PrivacyPolicyPage() {
-  usePageMeta('Privacy Policy', 'How VisionSpring Agency collects, uses, and protects personal information submitted through this website.');
   return <LegalDocument doc={privacyPolicy} />;
 }
