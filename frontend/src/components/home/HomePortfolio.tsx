@@ -14,7 +14,7 @@ const PORTFOLIO_IMAGE_MAP: Record<string, string> = {
   synowatt: "/synowatt.jpeg",
   urbanmall: "/urbanmall.jpeg",
   dallian: "/Dallian.jpeg",
-  initiative: "/initiativefortheneedy.jpeg",
+  initiative: "/Initiativefortheneedy.jpeg",
 };
 
 export function HomePortfolio() {
