@@ -9,14 +9,12 @@ export interface EnquiryValues {
   email: string;
   phone: string;
   service: string;
-  budget: string;
-  contactMethod: string;
   description: string;
 }
 
 type EnquiryField = keyof EnquiryValues;
 type EnquiryErrors = Partial<Record<EnquiryField, string>>;
-type EnquiryStatus =
+export type EnquiryStatus =
   | "idle"
   | "submitting"
   | "not-configured"
@@ -31,11 +29,9 @@ export function formatEnquiry(values: EnquiryValues, packageName?: string): stri
   return [
     `Name: ${values.fullName}`,
     values.organization && `Organization: ${values.organization}`,
+    `Phone: ${values.phone}`,
     `Email: ${values.email}`,
-    values.phone && `Phone: ${values.phone}`,
     `Service: ${serviceLabel(values.service)}`,
-    values.budget && `Budget: ${values.budget}`,
-    `Preferred contact: ${values.contactMethod}`,
     packageName && `Package: ${packageName}`,
     `Project details: ${values.description}`,
   ]
@@ -45,6 +41,7 @@ export function formatEnquiry(values: EnquiryValues, packageName?: string): stri
 
 export function useEnquiryForm(
   defaultService: string,
+  packageName?: string,
 ) {
   const [values, setValues] = useState<EnquiryValues>({
     fullName: "",
@@ -52,8 +49,6 @@ export function useEnquiryForm(
     email: "",
     phone: "",
     service: defaultService,
-    budget: "",
-    contactMethod: "Email",
     description: "",
   });
   const [errors, setErrors] = useState<EnquiryErrors>({});
@@ -62,26 +57,31 @@ export function useEnquiryForm(
   const setField = (field: EnquiryField, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
-    setStatus("idle");
+    if (status !== "idle" && status !== "submitting") {
+      setStatus("idle");
+    }
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors: EnquiryErrors = {};
 
-    if (!values.fullName.trim()) nextErrors.fullName = "Please enter your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
+    if (!values.fullName.trim()) {
+      nextErrors.fullName = "Please enter your full name.";
+    }
+    if (!values.phone.trim()) {
+      nextErrors.phone = "Please enter your phone number.";
+    } else if (values.phone.replace(/[^0-9]/g, "").length < 9) {
+      nextErrors.phone = "Please enter a valid phone number (e.g. 0712 345 678).";
+    }
+    if (!values.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
       nextErrors.email = "Please enter a valid email address.";
     }
-    if (!values.service) nextErrors.service = "Please choose a service.";
+    if (!values.service) {
+      nextErrors.service = "Please choose a service.";
+    }
     if (!values.description.trim()) {
       nextErrors.description = "Please describe your project.";
-    }
-    if (
-      values.contactMethod !== "Email" &&
-      !values.phone.trim()
-    ) {
-      nextErrors.phone = "Please enter a phone number for your chosen contact method.";
     }
 
     setErrors(nextErrors);
@@ -89,7 +89,35 @@ export function useEnquiryForm(
       setStatus("idle");
       return;
     }
-    setStatus("not-configured");
+
+    setStatus("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          packageName,
+          serviceLabel: serviceLabel(values.service),
+        }),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (response.ok && result?.success) {
+        setStatus("success");
+      } else if (response.status === 503 || result?.unconfigured) {
+        setStatus("not-configured");
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      console.error("Failed to submit enquiry form:", err);
+      setStatus("error");
+    }
   };
 
   return { values, errors, status, setField, handleSubmit, setStatus };
