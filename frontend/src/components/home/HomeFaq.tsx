@@ -108,8 +108,14 @@ export function HomeFaq() {
                   <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0 text-ocean" aria-hidden="true" />
                   <div>
                     <p className="text-xs font-semibold text-navy-900">Location</p>
-                    {/* Add your street address here if you have an office: customers check for one */}
-                    <p className="text-xs text-slate-600">Nairobi, Kenya</p>
+                    <a
+                      href="https://maps.app.goo.gl/aXwCNuYKgrxTYwpE7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-ocean hover:underline font-medium"
+                    >
+                      Nairobi, Kenya (View on Google Maps)
+                    </a>
                   </div>
                 </div>
 

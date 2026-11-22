@@ -25,10 +25,15 @@ export function Footer() {
             {site.description}
           </p>
           <div className="mt-6 space-y-2.5 text-sm">
-            <div className="flex items-center gap-3 text-white/80">
-              <MapPinIcon className="h-4 w-4 text-sky-light shrink-0" aria-hidden="true" />
-              <span>Nairobi, Kenya • East Africa</span>
-            </div>
+            <a
+              href="https://maps.app.goo.gl/aXwCNuYKgrxTYwpE7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-white/80 transition-colors duration-150 hover:text-white group"
+            >
+              <MapPinIcon className="h-4 w-4 text-sky-light shrink-0 group-hover:text-growth-light transition-colors" aria-hidden="true" />
+              <span className="group-hover:underline">Nairobi, Kenya • East Africa</span>
+            </a>
             <a
               href="tel:+254112280703"
               className="flex items-center gap-3 text-white/80 transition-colors duration-150 hover:text-white"

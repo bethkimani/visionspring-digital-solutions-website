@@ -98,7 +98,9 @@ export default function HomePage() {
             closes: '18:00',
           },
         ],
+        hasMap: 'https://maps.app.goo.gl/aXwCNuYKgrxTYwpE7',
         sameAs: [
+          'https://maps.app.goo.gl/aXwCNuYKgrxTYwpE7',
           'https://www.facebook.com/profile.php?id=61595464059183',
           'https://www.instagram.com/visionspringagency/',
           'https://www.tiktok.com/@visionspringagency?lang=en-GB',

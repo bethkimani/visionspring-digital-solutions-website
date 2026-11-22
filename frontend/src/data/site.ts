@@ -10,6 +10,7 @@ export const site = {
   whatsappUrl: 'https://wa.me/254112280703',
   whatsappDefaultMessage: "Hello VisionSpring Agency, I'd like to talk about a project.",
   logoUrl: "/logo.png",
+  googleMapsUrl: 'https://maps.app.goo.gl/aXwCNuYKgrxTYwpE7',
   /**
    * Connect a form service (e.g. a Formspree or Getform endpoint URL) to accept enquiries online.
    * While empty, the form never pretends to send — visitors are offered email and WhatsApp instead.
