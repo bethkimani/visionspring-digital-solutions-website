@@ -6,6 +6,7 @@ import { ArrowLeftIcon, ArrowRightIcon, ClockIcon, InfoIcon } from 'lucide-react
 import { getPostBySlug, getAllPosts } from '@/sanity/api';
 import { services } from '@/data/services';
 import { formatPostDate } from '@/utils/dates';
+import { site } from '@/data/site';
 import { PostCard } from '@/components/PostCard';
 import { ButtonLink } from '@/components/ButtonLink';
 import { CtaBanner } from '@/components/CtaBanner';
@@ -96,12 +97,12 @@ export default async function BlogArticlePage({ params }: PageProps) {
       name: 'VisionSpring Agency',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://visionspring.agency/logo.png',
+        url: `${site.url}/logo.png`,
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://visionspring.agency/blog/${post.slug}`,
+      '@id': `${site.url}/blog/${post.slug}`,
     },
   };
 
@@ -176,7 +177,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
               <ShareButtons
                 title={post.title}
-                url={`https://visionspring.agency/blog/${post.slug}`}
+                url={`${site.url}/blog/${post.slug}`}
               />
             </div>
           </aside>
