@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeftIcon, ArrowRightIcon, ClockIcon, InfoIcon } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon, ClockIcon,} from 'lucide-react';
 import { getPostBySlug, getAllPosts } from '@/sanity/api';
 import { services } from '@/data/services';
 import { formatPostDate } from '@/utils/dates';
@@ -72,7 +72,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const allPosts = await getAllPosts();
   const relatedPosts = allPosts
     .filter((p) => p.slug !== post.slug)
-    .sort((a, b) => (a.category === post.category ? -1 : 1))
+    .sort((a) => (a.category === post.category ? -1 : 1))
     .slice(0, 3);
 
   const relatedServices = (post.relatedServices || [])
@@ -112,10 +112,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
         {JSON.stringify(jsonLd)}
       </script>
 
-      <article>
+      <article className="overflow-x-clip">
         <header className="bg-hero relative overflow-hidden text-white">
           <div className="bg-grid-lines absolute inset-0" aria-hidden="true" />
-          <div className="container-site relative max-w-4xl py-16 sm:py-20">
+          <div className="container-site relative max-w-4xl py-12 sm:py-16 lg:py-20">
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-sm text-white/70 transition-colors duration-150 hover:text-white"
@@ -123,12 +123,12 @@ export default async function BlogArticlePage({ params }: PageProps) {
               <ArrowLeftIcon className="h-4 w-4" aria-hidden="true" />
               All articles
             </Link>
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm">
+            <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm">
               <span className="rounded-full bg-white/10 px-3 py-1 font-semibold text-growth-light">
                 {post.category}
               </span>
               <span className="flex items-center gap-1.5 text-white/70">
-                <ClockIcon className="h-4 w-4" aria-hidden="true" />
+                <ClockIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" />
                 {post.readMinutes} min read
               </span>
               {post.publishedAt && (
@@ -138,24 +138,27 @@ export default async function BlogArticlePage({ params }: PageProps) {
               )}
               {post.author && <span className="text-white/70">By {post.author}</span>}
             </div>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] sm:text-5xl">
+            <h1 className="mt-4 sm:mt-5 text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-snug sm:leading-[1.1] break-words">
               {post.title}
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-white/75">{post.intro}</p>
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-white/75 break-words">
+              {post.intro}
+            </p>
           </div>
         </header>
 
-        <div className="container-site -mt-0 pt-10">
+        <div className="container-site pt-6 sm:pt-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={post.image}
-            alt={post.imageAlt}
-            className="mx-auto aspect-[21/9] w-full max-w-6xl rounded-[2rem] object-cover shadow-md"
+            alt={post.imageAlt || post.title || 'VisionSpring article cover'}
+            className="mx-auto aspect-[16/9] sm:aspect-[21/9] w-full max-w-6xl rounded-2xl sm:rounded-[2rem] object-cover shadow-md"
           />
         </div>
 
-        <div className="container-site grid gap-12 py-14 lg:grid-cols-12">
-          {/* Left Sticky Sidebar: Table of Contents & Share */}
-          <aside className="lg:col-span-3">
+        <div className="container-site grid gap-8 lg:gap-12 py-10 sm:py-14 lg:grid-cols-12">
+          {/* Left Sticky Sidebar: Table of Contents & Share (Desktop only) */}
+          <aside className="hidden lg:block lg:col-span-3">
             <div className="lg:sticky lg:top-28 space-y-8">
               {post.sections && post.sections.length > 0 && (
                 <nav aria-label="Table of contents">
@@ -183,30 +186,50 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </aside>
 
           {/* Main Article Content */}
-          <div className="lg:col-span-6">
+          <div className="min-w-0 max-w-full lg:col-span-6 break-words">
+            {/* Mobile-only Collapsible Table of Contents */}
+            {post.sections && post.sections.length > 0 && (
+              <details className="mb-8 rounded-2xl border border-line bg-slate-50/90 p-4 lg:hidden group">
+                <summary className="flex cursor-pointer items-center justify-between font-semibold text-navy-800 text-sm">
+                  <span>In this article ({post.sections.length} sections)</span>
+                  <span className="text-ocean text-xs font-bold transition-transform group-open:rotate-180">
+                    ▼
+                  </span>
+                </summary>
+                <ol className="mt-3 space-y-2 border-l border-line pl-1 pt-1 text-sm">
+                  {post.sections.map((s) => (
+                    <li key={s.id}>
+                      <a
+                        href={`#${s.id}`}
+                        className="-ml-px block border-l-2 border-transparent pl-3 text-sm text-muted hover:border-ocean hover:text-navy-800"
+                      >
+                        {s.heading}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </details>
+            )}
+
             {/* Render Sanity Portable Text if present */}
             {post.body ? (
               <PortableTextRenderer value={post.body} />
             ) : (
               /* Fallback: render sections from local dataset */
               post.sections?.map((s) => (
-                <section key={s.id} id={s.id} className="scroll-mt-28 [&:not(:first-child)]:mt-12">
-                  <h2 className="text-2xl font-extrabold leading-tight text-navy-800 sm:text-[1.7rem]">
+                <section key={s.id} id={s.id} className="scroll-mt-28 [&:not(:first-child)]:mt-10 sm:[&:not(:first-child)]:mt-12">
+                  <h2 className="text-xl sm:text-2xl font-extrabold leading-snug text-navy-800 sm:text-[1.7rem] break-words">
                     {s.heading}
                   </h2>
                   {s.paragraphs.map((p) => (
-                    <p key={p} className="mt-4 text-[17px] leading-[1.8] text-navy-800/85">
+                    <p key={p} className="mt-4 text-[15px] sm:text-[17px] leading-[1.8] text-navy-800/85 break-words">
                       {p}
                     </p>
                   ))}
                   {s.bullets && (
-                    <ul className="mt-5 space-y-2.5">
+                    <ul className="mt-5 space-y-2.5 ml-4 list-disc text-navy-800/85">
                       {s.bullets.map((b) => (
-                        <li key={b} className="flex items-start gap-3 text-[17px] text-navy-800/85">
-                          <span
-                            className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-growth"
-                            aria-hidden="true"
-                          />
+                        <li key={b} className="text-[15px] sm:text-[17px] pl-1 break-words">
                           {b}
                         </li>
                       ))}
@@ -216,15 +239,25 @@ export default async function BlogArticlePage({ params }: PageProps) {
               ))
             )}
 
-            <div className="mt-14 rounded-3xl bg-navy-950 p-8 text-white">
-              <h2 className="text-2xl font-extrabold">Need Help With This?</h2>
-              <p className="mt-2 text-white/70">
+            {/* Mobile Share Buttons */}
+            <div className="mt-8 pt-6 border-t border-line lg:hidden">
+              <ShareButtons
+                title={post.title}
+                url={`${site.url}/blog/${post.slug}`}
+              />
+            </div>
+
+            {/* Need Help Card */}
+            <div className="mt-10 sm:mt-14 rounded-2xl sm:rounded-3xl bg-navy-950 p-6 sm:p-8 text-white">
+              <h2 className="text-xl sm:text-2xl font-extrabold">Need Help With This?</h2>
+              <p className="mt-2 text-sm sm:text-base text-white/70">
                 Our team can put these ideas into practice for your organization.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
                 <ButtonLink
                   to="/contact#consultation-form"
                   variant="light"
+                  className="w-full sm:w-auto text-center justify-center"
                 >
                   Talk to Our Team
                 </ButtonLink>
@@ -234,6 +267,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   )}`}
                   variant="whatsapp"
                   icon={<WhatsAppIcon className="h-4 w-4" />}
+                  className="w-full sm:w-auto text-center justify-center"
                 >
                   WhatsApp Us
                 </ButtonLink>
@@ -250,17 +284,17 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   <li key={s.slug}>
                     <Link
                       href={`/services/${s.slug}`}
-                      className="group flex items-start gap-3 rounded-2xl border border-line p-4 transition-colors duration-150 hover:border-ocean/40"
+                      className="group flex items-start gap-3 rounded-2xl border border-line p-3.5 sm:p-4 transition-colors duration-150 hover:border-ocean/40"
                     >
                       <s.icon
                         className="mt-0.5 h-5 w-5 shrink-0 text-ocean"
                         aria-hidden="true"
                       />
-                      <span>
-                        <span className="block text-sm font-semibold text-navy-800 group-hover:text-ocean">
+                      <span className="min-w-0">
+                        <span className="block text-sm font-semibold text-navy-800 group-hover:text-ocean truncate">
                           {s.navTitle}
                         </span>
-                        <span className="mt-0.5 block text-xs text-muted">{s.blurb}</span>
+                        <span className="mt-0.5 block text-xs text-muted line-clamp-2">{s.blurb}</span>
                       </span>
                     </Link>
                   </li>

@@ -25,45 +25,67 @@ export function PostCard({ post, variant = 'card' }: PostCardProps) {
 
   if (variant === 'featured') {
     return (
-      <article className="group grid overflow-hidden rounded-[2rem] border border-line bg-white lg:grid-cols-2">
+      <article className="group grid overflow-hidden rounded-2xl sm:rounded-3xl lg:rounded-[2rem] border border-line bg-white lg:grid-cols-2">
         <Link href={`/blog/${post.slug}`} className="block overflow-hidden" tabIndex={-1} aria-hidden="true">
-          <img src={post.image} alt="" className="h-64 w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] lg:h-full" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={post.image}
+            alt={post.title || 'Featured article cover'}
+            className="h-52 sm:h-64 w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03] lg:h-full"
+          />
         </Link>
-        <div className="flex flex-col p-7 sm:p-10">
+        <div className="flex flex-col p-5 sm:p-7 md:p-10 min-w-0">
           {meta}
-          <h2 className="mt-4 text-2xl font-extrabold leading-tight text-navy-800 sm:text-3xl">
+          <h2 className="mt-3 sm:mt-4 text-xl sm:text-2xl lg:text-3xl font-extrabold leading-snug sm:leading-tight text-navy-800 break-words">
             <Link href={`/blog/${post.slug}`} className="hover:text-ocean">
               {post.title}
             </Link>
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted">{post.excerpt}</p>
-          <Link href={`/blog/${post.slug}`} className="mt-auto inline-flex items-center gap-1.5 pt-8 text-sm font-semibold text-ocean hover:text-ocean-dark">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-muted line-clamp-3 sm:line-clamp-4 break-words">
+            {post.excerpt}
+          </p>
+          <Link
+            href={`/blog/${post.slug}`}
+            className="mt-auto inline-flex items-center gap-1.5 pt-6 sm:pt-8 text-sm font-semibold text-ocean hover:text-ocean-dark"
+          >
             Read Article
             <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
           </Link>
         </div>
-      </article>);
-
+      </article>
+    );
   }
 
   return (
-    <article className="group flex h-full flex-col">
+    <article className="group flex h-full flex-col min-w-0">
       <Link href={`/blog/${post.slug}`} className="block overflow-hidden rounded-2xl" tabIndex={-1} aria-hidden="true">
-        <img src={post.image} alt="" loading="lazy" className="aspect-[16/10] w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={post.image}
+          alt={post.title || 'Blog article cover'}
+          loading="lazy"
+          className="aspect-[16/10] w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+        />
       </Link>
-      <div className="flex flex-1 flex-col pt-5">
+      <div className="flex flex-1 flex-col pt-4 sm:pt-5 min-w-0">
         {meta}
-        <h3 className="mt-3 text-lg font-bold leading-snug text-navy-800">
+        <h3 className="mt-2.5 sm:mt-3 text-base sm:text-lg font-bold leading-snug text-navy-800 break-words">
           <Link href={`/blog/${post.slug}`} className="hover:text-ocean">
             {post.title}
           </Link>
         </h3>
-        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">{post.excerpt}</p>
-        <Link href={`/blog/${post.slug}`} className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-semibold text-ocean hover:text-ocean-dark">
+        <p className="mt-2 line-clamp-2 text-xs sm:text-sm leading-relaxed text-muted break-words">
+          {post.excerpt}
+        </p>
+        <Link
+          href={`/blog/${post.slug}`}
+          className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-semibold text-ocean hover:text-ocean-dark"
+        >
           Read Article
           <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
         </Link>
       </div>
-    </article>);
+    </article>
+  );
 
 }
