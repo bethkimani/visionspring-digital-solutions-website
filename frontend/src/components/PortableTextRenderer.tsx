@@ -423,10 +423,37 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
   );
 }
 
+interface PortableTextChild {
+  _type?: string;
+  _key?: string;
+  text?: string;
+  marks?: string[];
+}
+
+interface PortableTextBlockItem {
+  _type?: string;
+  _key?: string;
+  style?: string;
+  children?: PortableTextChild[];
+  [key: string]: unknown;
+}
+
+function extractRawBlockText(children?: unknown): string {
+  if (!Array.isArray(children)) return '';
+  return children
+    .map((c: unknown) => {
+      if (c && typeof c === 'object' && 'text' in c) {
+        return (c as PortableTextChild).text || '';
+      }
+      return '';
+    })
+    .join('');
+}
+
 const components: PortableTextComponents = {
   block: {
     h2: ({ children, value }) => {
-      const rawText = (value?.children || []).map((c: any) => c.text || '').join('');
+      const rawText = extractRawBlockText(value?.children);
       const heading = rawText || children?.toString() || '';
       const id = slugify(heading);
       return (
@@ -439,7 +466,7 @@ const components: PortableTextComponents = {
       );
     },
     h3: ({ children, value }) => {
-      const rawText = (value?.children || []).map((c: any) => c.text || '').join('');
+      const rawText = extractRawBlockText(value?.children);
       const heading = rawText || children?.toString() || '';
       const id = slugify(heading);
       return (
@@ -452,7 +479,7 @@ const components: PortableTextComponents = {
       );
     },
     normal: ({ value, children }) => {
-      const rawText = (value?.children || []).map((c: any) => c.text || '').join('');
+      const rawText = extractRawBlockText(value?.children);
       return renderMarkdownEnhancedBlock(rawText, children);
     },
     blockquote: ({ children }) => (
@@ -471,7 +498,7 @@ const components: PortableTextComponents = {
   },
   listItem: {
     bullet: ({ children, value }) => {
-      const rawText = (value?.children || []).map((c: any) => c.text || '').join('');
+      const rawText = extractRawBlockText(value?.children);
       return (
         <li className="pl-1 text-base leading-relaxed text-navy-800/85 sm:text-lg">
           {rawText ? renderInlineMarkdown(rawText) : children}
@@ -479,7 +506,7 @@ const components: PortableTextComponents = {
       );
     },
     number: ({ children, value }) => {
-      const rawText = (value?.children || []).map((c: any) => c.text || '').join('');
+      const rawText = extractRawBlockText(value?.children);
       return (
         <li className="pl-1 text-base leading-relaxed text-navy-800/85 sm:text-lg">
           {rawText ? renderInlineMarkdown(rawText) : children}
@@ -493,6 +520,7 @@ const components: PortableTextComponents = {
       if (!url) return null;
       return (
         <figure className="my-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={url}
             alt={value.alt || 'VisionSpring article illustration'}
@@ -557,10 +585,10 @@ const components: PortableTextComponents = {
  * Pre-processes blocks:
  * If a table is split across consecutive individual blocks, merges them into a single `markdownTable` block.
  */
-function preprocessPortableText(blocks: any): any {
-  if (!Array.isArray(blocks)) return blocks;
+function preprocessPortableText(blocks: unknown): unknown[] {
+  if (!Array.isArray(blocks)) return [];
 
-  const result: any[] = [];
+  const result: unknown[] = [];
   let tableAccumulator: string[] = [];
 
   const flushTable = () => {
@@ -587,9 +615,9 @@ function preprocessPortableText(blocks: any): any {
   };
 
   for (let i = 0; i < blocks.length; i++) {
-    const block = blocks[i];
-    if (block?._type === 'block') {
-      const rawText = (block.children || []).map((c: any) => c.text || '').join('').trim();
+    const rawBlock = blocks[i] as PortableTextBlockItem | undefined;
+    if (rawBlock?._type === 'block') {
+      const rawText = extractRawBlockText(rawBlock.children).trim();
 
       if (rawText.startsWith('|') && rawText.endsWith('|')) {
         tableAccumulator.push(rawText);
@@ -601,7 +629,7 @@ function preprocessPortableText(blocks: any): any {
       flushTable();
     }
 
-    result.push(block);
+    result.push(rawBlock);
   }
 
   if (tableAccumulator.length > 0) {
@@ -611,7 +639,7 @@ function preprocessPortableText(blocks: any): any {
   return result;
 }
 
-export function PortableTextRenderer({ value }: { value: any }) {
+export function PortableTextRenderer({ value }: { value: unknown }) {
   if (!value) return null;
 
   // If a raw string is passed instead of blocks, render directly
@@ -627,7 +655,8 @@ export function PortableTextRenderer({ value }: { value: any }) {
 
   return (
     <div className="prose prose-slate max-w-none">
-      <PortableText value={preprocessed} components={components} />
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <PortableText value={preprocessed as any} components={components} />
     </div>
   );
 }
