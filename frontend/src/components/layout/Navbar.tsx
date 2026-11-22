@@ -44,16 +44,18 @@ export function Navbar() {
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const servicesActive = pathname.startsWith('/services');
 
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b bg-white/90 backdrop-blur-md transition-[border-color,box-shadow] duration-200 ${
-        scrolled ? 'border-line shadow-[0_8px_28px_-20px_rgba(11,42,91,0.4)]' : 'border-transparent'}`
-      }>
-      
+      className={`sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md transition-all duration-200 border-b border-line/80 rounded-b-2xl sm:rounded-b-3xl xl:rounded-none ${
+        scrolled ? 'shadow-[0_8px_28px_-20px_rgba(11,42,91,0.4)]' : ''
+      }`}
+    >
       <div className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between gap-4 px-5 sm:px-8">
         <Link href="/" onClick={() => setServicesOpen(false)} aria-label="VisionSpring Agency home" className="shrink-0 rounded-full">
           <Logo />
