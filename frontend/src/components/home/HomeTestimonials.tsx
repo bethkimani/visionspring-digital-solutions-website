@@ -111,7 +111,7 @@ export function HomeTestimonials() {
         <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="mt-8 sm:mt-12 flex md:grid gap-3.5 sm:gap-6 md:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-5 px-5 md:mx-0 md:px-0 py-2 scroll-smooth touch-pan-x"
+          className="mt-8 sm:mt-12 flex md:grid gap-3.5 sm:gap-6 md:grid-cols-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-none -mx-5 px-5 md:mx-0 md:px-0 py-2 scroll-smooth overscroll-x-contain"
         >
           {testimonials.map((t, idx) => (
             <div
