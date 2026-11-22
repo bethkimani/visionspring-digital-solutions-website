@@ -12,8 +12,8 @@ export function HomeSocial() {
     <section className="bg-navy-950 py-20 text-white sm:py-28">
       <div className="container-site grid items-center gap-14 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
-          <p className="mb-4 text-sm font-semibold text-growth-light">Social media and digital marketing</p>
-          <h2 className="text-3xl font-extrabold leading-[1.1] sm:text-4xl">Show up consistently where your customers spend their time.</h2>
+          <p className="mb-4 text-sm font-semibold text-growth-light">Show up where your customers spend their time</p>
+          <h2 className="text-3xl font-extrabold leading-[1.1] sm:text-4xl">Social Media Management &amp; Digital Marketing in Kenya</h2>
           <p className="mt-5 text-lg leading-relaxed text-white/70">
             Content calendars, branded posts, search ads, and campaign creative — planned around your goals, posting frequency, and budget.
           </p>
@@ -27,7 +27,7 @@ export function HomeSocial() {
           </div>
         </Reveal>
         <Reveal className="relative lg:col-span-7" delay={0.08}>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3" aria-hidden="true" data-nosnippet>
             <SocialPostMockup sample={socialSamples[1]} className="sm:translate-y-8" />
             <div className="space-y-4">
               <SocialPostMockup sample={socialSamples[2]} />

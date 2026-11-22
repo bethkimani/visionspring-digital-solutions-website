@@ -18,6 +18,7 @@ export function ServiceCard({ service, variant = 'compact' }: ServiceCardProps) 
     return (
       <Link
         href={`/services/${service.slug}`}
+        aria-label={`Explore ${service.title} in Nairobi, Kenya`}
         className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-gradient-to-b from-white via-white to-slate-50/80 p-6 shadow-sm shadow-slate-200/60 transition-all duration-200 ease-out hover:-translate-y-1 hover:border-ocean/50 hover:bg-white hover:shadow-xl hover:shadow-ocean/10">
         
         {/* Subtle Top Accent Line on Hover */}
@@ -44,7 +45,7 @@ export function ServiceCard({ service, variant = 'compact' }: ServiceCardProps) 
         </p>
 
         <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-ocean transition-colors duration-150 group-hover:text-ocean-dark">
-          Learn More
+          Explore {service.navTitle}
           <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
         </span>
       </Link>
@@ -75,10 +76,10 @@ export function ServiceCard({ service, variant = 'compact' }: ServiceCardProps) 
       </ul>
       <div className="mt-auto flex flex-wrap items-center gap-2 pt-8">
         <ButtonLink to={`/services/${service.slug}`} variant="secondary" iconRight={<ArrowRightIcon className="h-4 w-4" aria-hidden="true" />}>
-          Learn More
+          Learn More<span className="sr-only"> about {service.navTitle}</span>
         </ButtonLink>
         <ButtonLink to={`/contact?service=${service.slug}`} variant="outline">
-          Request a Quote
+          Request a Quote<span className="sr-only"> for {service.navTitle}</span>
         </ButtonLink>
         <a
           href={whatsappLink(service.whatsappMessage)}

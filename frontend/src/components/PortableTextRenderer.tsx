@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import Link from 'next/link';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { urlForImage } from '@/sanity/image';
@@ -268,16 +269,19 @@ function parseMarkdownDocument(text: string): ParsedMarkdownBlock[] {
  */
 function MarkdownTableView({ headers, rows }: { headers: string[]; rows: string[][] }) {
   return (
-    <div className="my-8 overflow-hidden rounded-2xl border border-line bg-white shadow-sm ring-1 ring-slate-900/5">
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[560px] border-collapse text-left text-sm sm:text-base">
+    <div className="my-8 max-w-full overflow-hidden rounded-2xl border border-line bg-white shadow-sm ring-1 ring-slate-900/5">
+      <div className="flex items-center justify-between border-b border-line/60 bg-slate-50/80 px-4 py-2 text-[11px] font-medium text-slate-500 sm:hidden">
+        <span>← Scroll table horizontally →</span>
+      </div>
+      <div className="overflow-x-auto touch-pan-x">
+        <table className="w-full min-w-[480px] border-collapse text-left text-xs sm:text-sm md:text-base">
           <thead>
             <tr className="border-b border-line bg-slate-50/90">
               {headers.map((h, i) => (
                 <th
                   key={i}
                   scope="col"
-                  className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-navy-900 sm:px-6 sm:text-sm"
+                  className="px-3.5 py-3 sm:px-6 sm:py-4 text-xs font-bold uppercase tracking-wider text-navy-900 sm:text-sm"
                 >
                   {renderInlineMarkdown(h)}
                 </th>
@@ -295,7 +299,7 @@ function MarkdownTableView({ headers, rows }: { headers: string[]; rows: string[
                 {row.map((cell, cIdx) => (
                   <td
                     key={cIdx}
-                    className={`px-5 py-4 leading-relaxed sm:px-6 ${
+                    className={`px-3.5 py-3 sm:px-6 sm:py-4 leading-relaxed ${
                       cIdx === 0
                         ? 'font-semibold text-navy-900'
                         : 'font-medium text-slate-700'
@@ -326,7 +330,7 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
 
   if (!hasMarkdownSyntax) {
     return (
-      <p className="mb-6 text-base leading-relaxed text-navy-800/85 sm:text-lg">
+      <p className="mb-5 sm:mb-6 text-[15px] sm:text-base lg:text-lg leading-relaxed text-navy-800/85 break-words [overflow-wrap:anywhere]">
         {defaultChildren}
       </p>
     );
@@ -347,7 +351,7 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
             <h2
               key={`h2-${idx}`}
               id={id}
-              className="mt-12 mb-4 scroll-mt-28 text-2xl font-extrabold tracking-tight text-navy-800 sm:text-3xl"
+              className="mt-10 sm:mt-12 mb-3 sm:mb-4 scroll-mt-28 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-navy-800 break-words [overflow-wrap:anywhere]"
             >
               {renderInlineMarkdown(b.text)}
             </h2>
@@ -360,7 +364,7 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
             <h3
               key={`h3-${idx}`}
               id={id}
-              className="mt-8 mb-3 scroll-mt-28 text-xl font-bold text-navy-800 sm:text-2xl"
+              className="mt-6 sm:mt-8 mb-2.5 sm:mb-3 scroll-mt-28 text-lg sm:text-xl lg:text-2xl font-bold text-navy-800 break-words [overflow-wrap:anywhere]"
             >
               {renderInlineMarkdown(b.text)}
             </h3>
@@ -369,9 +373,9 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
 
         if (b.type === 'ul') {
           return (
-            <ul key={`ul-${idx}`} className="my-6 ml-6 list-disc space-y-2.5 text-navy-800/85">
+            <ul key={`ul-${idx}`} className="my-5 sm:my-6 ml-4 sm:ml-6 list-disc space-y-2 text-navy-800/85">
               {b.items.map((item, itemIdx) => (
-                <li key={itemIdx} className="pl-1 text-base leading-relaxed sm:text-lg">
+                <li key={itemIdx} className="pl-1 text-[15px] sm:text-base lg:text-lg leading-relaxed break-words [overflow-wrap:anywhere]">
                   {renderInlineMarkdown(item)}
                 </li>
               ))}
@@ -381,9 +385,9 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
 
         if (b.type === 'ol') {
           return (
-            <ol key={`ol-${idx}`} className="my-6 ml-6 list-decimal space-y-2.5 text-navy-800/85">
+            <ol key={`ol-${idx}`} className="my-5 sm:my-6 ml-4 sm:ml-6 list-decimal space-y-2 text-navy-800/85">
               {b.items.map((item, itemIdx) => (
-                <li key={itemIdx} className="pl-1 text-base leading-relaxed sm:text-lg">
+                <li key={itemIdx} className="pl-1 text-[15px] sm:text-base lg:text-lg leading-relaxed break-words [overflow-wrap:anywhere]">
                   {renderInlineMarkdown(item)}
                 </li>
               ))}
@@ -395,7 +399,7 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
           return (
             <blockquote
               key={`quote-${idx}`}
-              className="my-8 rounded-r-xl border-l-4 border-ocean bg-slate-50 px-6 py-4 italic text-navy-800"
+              className="my-6 sm:my-8 rounded-r-xl border-l-4 border-ocean bg-slate-50 px-4 py-3 sm:px-6 sm:py-4 italic text-navy-800 break-words"
             >
               {renderInlineMarkdown(b.text)}
             </blockquote>
@@ -403,14 +407,14 @@ function renderMarkdownEnhancedBlock(text: string, defaultChildren: React.ReactN
         }
 
         if (b.type === 'hr') {
-          return <hr key={`hr-${idx}`} className="my-10 border-line" />;
+          return <hr key={`hr-${idx}`} className="my-8 sm:my-10 border-line" />;
         }
 
         if (b.type === 'p') {
           return (
             <p
               key={`p-${idx}`}
-              className="mb-6 text-base leading-relaxed text-navy-800/85 sm:text-lg"
+              className="mb-5 sm:mb-6 text-[15px] sm:text-base lg:text-lg leading-relaxed text-navy-800/85 break-words [overflow-wrap:anywhere]"
             >
               {renderInlineMarkdown(b.text)}
             </p>
@@ -459,7 +463,7 @@ const components: PortableTextComponents = {
       return (
         <h2
           id={id}
-          className="mt-12 mb-4 scroll-mt-28 text-2xl font-extrabold tracking-tight text-navy-800 sm:text-3xl"
+          className="mt-10 sm:mt-12 mb-3 sm:mb-4 scroll-mt-28 text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-navy-800 break-words [overflow-wrap:anywhere]"
         >
           {rawText ? renderInlineMarkdown(rawText) : children}
         </h2>
@@ -472,7 +476,7 @@ const components: PortableTextComponents = {
       return (
         <h3
           id={id}
-          className="mt-8 mb-3 scroll-mt-28 text-xl font-bold text-navy-800 sm:text-2xl"
+          className="mt-6 sm:mt-8 mb-2.5 sm:mb-3 scroll-mt-28 text-lg sm:text-xl lg:text-2xl font-bold text-navy-800 break-words [overflow-wrap:anywhere]"
         >
           {rawText ? renderInlineMarkdown(rawText) : children}
         </h3>
@@ -483,24 +487,24 @@ const components: PortableTextComponents = {
       return renderMarkdownEnhancedBlock(rawText, children);
     },
     blockquote: ({ children }) => (
-      <blockquote className="my-8 rounded-r-xl border-l-4 border-ocean bg-slate-50 px-6 py-4 italic text-navy-800">
+      <blockquote className="my-6 sm:my-8 rounded-r-xl border-l-4 border-ocean bg-slate-50 px-4 py-3 sm:px-6 sm:py-4 italic text-navy-800 break-words">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="my-6 ml-6 list-disc space-y-2.5 text-navy-800/85">{children}</ul>
+      <ul className="my-5 sm:my-6 ml-4 sm:ml-6 list-disc space-y-2 text-navy-800/85">{children}</ul>
     ),
     number: ({ children }) => (
-      <ol className="my-6 ml-6 list-decimal space-y-2.5 text-navy-800/85">{children}</ol>
+      <ol className="my-5 sm:my-6 ml-4 sm:ml-6 list-decimal space-y-2 text-navy-800/85">{children}</ol>
     ),
   },
   listItem: {
     bullet: ({ children, value }) => {
       const rawText = extractRawBlockText(value?.children);
       return (
-        <li className="pl-1 text-base leading-relaxed text-navy-800/85 sm:text-lg">
+        <li className="pl-1 text-[15px] sm:text-base lg:text-lg leading-relaxed text-navy-800/85 break-words [overflow-wrap:anywhere]">
           {rawText ? renderInlineMarkdown(rawText) : children}
         </li>
       );
@@ -508,7 +512,7 @@ const components: PortableTextComponents = {
     number: ({ children, value }) => {
       const rawText = extractRawBlockText(value?.children);
       return (
-        <li className="pl-1 text-base leading-relaxed text-navy-800/85 sm:text-lg">
+        <li className="pl-1 text-[15px] sm:text-base lg:text-lg leading-relaxed text-navy-800/85 break-words [overflow-wrap:anywhere]">
           {rawText ? renderInlineMarkdown(rawText) : children}
         </li>
       );

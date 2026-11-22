@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { ArrowUpRightIcon, MailIcon } from 'lucide-react';
+import { ArrowUpRightIcon, MailIcon, MapPinIcon } from 'lucide-react';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { site, socialLinks } from '@/data/site';
 import { services } from '@/data/services';
@@ -71,6 +71,16 @@ export default function ContactPageClient() {
               <MailIcon className="h-7 w-7 text-ocean" aria-hidden="true" />
               <h2 className="mt-5 text-xl font-extrabold text-navy-800">Email us</h2>
               <p className="mt-1.5 break-all text-sm font-medium text-ocean">{site.email}</p>
+            </a>
+            <a
+              href="https://maps.app.goo.gl/aXwCNuYKgrxTYwpE7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-[2rem] border border-line p-7 transition-colors duration-150 hover:border-ocean/40"
+            >
+              <MapPinIcon className="h-7 w-7 text-emerald-600" aria-hidden="true" />
+              <h2 className="mt-5 text-xl font-extrabold text-navy-800">Find Us in Nairobi</h2>
+              <p className="mt-1.5 text-sm text-slate-600">View VisionSpring Agency on Google Maps →</p>
             </a>
             <div className="rounded-[2rem] bg-mist p-7">
               <h2 className="font-bold text-navy-800">What happens next?</h2>

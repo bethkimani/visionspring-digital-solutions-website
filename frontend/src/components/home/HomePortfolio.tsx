@@ -1,5 +1,3 @@
-"use client";
-
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRightIcon, ExternalLinkIcon } from 'lucide-react';
@@ -15,6 +13,9 @@ export function HomePortfolio() {
     .filter((p) => p.status === 'published' && p.featured)
     .map(withProjectImage);
 
+  // Nothing to show yet: don't render an empty section
+  if (featured.length === 0) return null;
+
   const gridCols =
     featured.length >= 4
       ? 'md:grid-cols-2 xl:grid-cols-4'
@@ -23,15 +24,15 @@ export function HomePortfolio() {
   return (
     <section className="relative overflow-hidden py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-[#04142e] via-[#0b2a5b] to-[#0a356e] text-white">
       {/* Ambient background glows */}
-      <div className="pointer-events-none absolute -top-20 left-1/4 h-96 w-96 rounded-full bg-ocean/20 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 right-1/4 h-96 w-96 rounded-full bg-growth/15 blur-3xl" />
+      <div className="pointer-events-none absolute -top-20 left-1/4 h-96 w-96 rounded-full bg-ocean/20 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -bottom-20 right-1/4 h-96 w-96 rounded-full bg-growth/15 blur-3xl" aria-hidden="true" />
       <div className="bg-grid-lines pointer-events-none absolute inset-0 z-0 opacity-40" aria-hidden="true" />
 
       <div className="container-site relative z-10">
         <SectionHeading
-          eyebrow="Featured Client Success Stories"
-          title="Live Platforms Engineered for Real Business Growth"
-          description="Explore high-converting websites and powerful custom platforms we've built for leading e-commerce, renewable energy, beauty, and community organizations."
+          eyebrow="Our Work"
+          title="Web Design Portfolio: Real Work for Kenyan Businesses"
+          description="Real websites, online stores and web apps built for Kenyan businesses."
           tone="light"
           action={
             <ButtonLink
@@ -40,12 +41,11 @@ export function HomePortfolio() {
               className="font-semibold text-navy-800 shadow-md transition-all duration-200 hover:shadow-lg hover:bg-sky-soft"
               iconRight={<ArrowRightIcon className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true" />}
             >
-              View All Projects
+              View Portfolio
             </ButtonLink>
           }
         />
 
-        {/* Responsive All-at-Once Grid */}
         <div className={`mt-12 grid grid-cols-1 ${gridCols} gap-6 lg:gap-8`}>
           {featured.map((project, index) => (
             <Reveal key={project.slug} delay={index * 0.1} className="h-full">
@@ -76,8 +76,8 @@ export function HomePortfolio() {
                     </Link>
                   </h3>
 
-                  {/* Summary */}
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-3">
+                  {/* Summary (keep these to one or two plain sentences in data/projects) */}
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 line-clamp-2">
                     {project.summary}
                   </p>
 
@@ -86,7 +86,7 @@ export function HomePortfolio() {
                     <ul className="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-xs text-slate-600">
                       {project.focus.slice(0, 2).map((item) => (
                         <li key={item} className="flex items-center gap-2">
-                          <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-growth/15 text-growth-dark text-[10px] font-bold">✓</span>
+                          <span className="flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-growth/15 text-growth-dark text-[10px] font-bold" aria-hidden="true">✓</span>
                           <span className="truncate">{item}</span>
                         </li>
                       ))}
@@ -102,7 +102,9 @@ export function HomePortfolio() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1.5 rounded-full bg-ocean px-3.5 py-1.5 text-xs font-semibold text-white transition-colors duration-150 hover:bg-ocean-dark shadow-sm"
                       >
-                        <span>Live Site</span>
+                        <span>
+                          Live Site<span className="sr-only"> – {project.title}</span>
+                        </span>
                         <ExternalLinkIcon className="h-3.5 w-3.5" aria-hidden="true" />
                       </a>
                     ) : null}
@@ -111,7 +113,9 @@ export function HomePortfolio() {
                       href={`/portfolio/${project.slug}`}
                       className="inline-flex items-center gap-1 text-xs font-semibold text-navy-800 transition-colors duration-150 hover:text-ocean ml-auto"
                     >
-                      <span>Case Study</span>
+                      <span>
+                        View Project<span className="sr-only"> – {project.title}</span>
+                      </span>
                       <ArrowRightIcon className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true" />
                     </Link>
                   </div>
@@ -120,6 +124,17 @@ export function HomePortfolio() {
             </Reveal>
           ))}
         </div>
+
+        <p className="mt-10 flex flex-wrap items-center justify-center gap-x-2 text-center text-sm text-white/80">
+          Want something similar?
+          <Link
+            href="/contact#consultation-form"
+            className="inline-flex items-center gap-1 font-semibold text-white underline-offset-4 hover:underline"
+          >
+            Get a free quote
+            <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </p>
       </div>
     </section>
   );

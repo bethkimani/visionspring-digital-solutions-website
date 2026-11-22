@@ -1,4 +1,3 @@
-import React from 'react';
 import { reasons, processSteps } from '../../data/home';
 import { Reveal } from '../Reveal';
 
@@ -9,7 +8,7 @@ export function HomeWhyProcess() {
         <div className="lg:col-span-6">
           <Reveal>
             <p className="mb-4 text-sm font-semibold text-growth-dark">Why VisionSpring Agency</p>
-            <h2 className="text-3xl font-extrabold leading-[1.1] text-navy-800 sm:text-4xl">Why Businesses in Kenya &amp; Beyond Choose VisionSpring</h2>
+            <h2 className="text-3xl font-extrabold leading-[1.1] text-navy-800 sm:text-4xl">Why Businesses in Kenya Choose VisionSpring</h2>
           </Reveal>
           <ul className="mt-10 divide-y divide-line border-t border-line">
             {reasons.map((r, i) =>

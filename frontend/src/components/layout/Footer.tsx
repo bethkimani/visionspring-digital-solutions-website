@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowUpRightIcon, MailIcon } from 'lucide-react';
+import { ArrowUpRightIcon, MailIcon, MapPinIcon, PhoneIcon, ClockIcon } from 'lucide-react';
 import { mainNav, legalNav } from '../../data/navigation';
 import { services } from '../../data/services';
 import { site, socialLinks } from '../../data/site';
@@ -24,12 +24,28 @@ export function Footer() {
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/65">
             {site.description}
           </p>
-          <div className="mt-6 space-y-3 text-sm">
+          <div className="mt-6 space-y-2.5 text-sm">
+            <a
+              href="https://maps.app.goo.gl/aXwCNuYKgrxTYwpE7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-white/80 transition-colors duration-150 hover:text-white group"
+            >
+              <MapPinIcon className="h-4 w-4 text-sky-light shrink-0 group-hover:text-growth-light transition-colors" aria-hidden="true" />
+              <span className="group-hover:underline">Nairobi, Kenya • East Africa</span>
+            </a>
+            <a
+              href="tel:+254112280703"
+              className="flex items-center gap-3 text-white/80 transition-colors duration-150 hover:text-white"
+            >
+              <PhoneIcon className="h-4 w-4 text-emerald-400 shrink-0" aria-hidden="true" />
+              +254 112 280 703
+            </a>
             <a
               href={`mailto:${site.email}`}
               className="flex items-center gap-3 text-white/80 transition-colors duration-150 hover:text-white"
             >
-              <MailIcon className="h-4 w-4 text-sky-light" aria-hidden="true" />
+              <MailIcon className="h-4 w-4 text-sky-light shrink-0" aria-hidden="true" />
               {site.email}
             </a>
             <a
@@ -38,9 +54,13 @@ export function Footer() {
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-white/80 transition-colors duration-150 hover:text-white"
             >
-              <WhatsAppIcon className="h-4 w-4 text-growth-light" />
+              <WhatsAppIcon className="h-4 w-4 text-growth-light shrink-0" />
               Chat on WhatsApp
             </a>
+            <div className="flex items-center gap-3 text-white/60 text-xs pt-1">
+              <ClockIcon className="h-3.5 w-3.5 text-amber-400 shrink-0" aria-hidden="true" />
+              <span>Mon – Sat: 8:00 AM – 6:00 PM EAT</span>
+            </div>
           </div>
           {activeSocials.length > 0 && (
             <ul className="mt-6 flex gap-2" aria-label="Social media">
